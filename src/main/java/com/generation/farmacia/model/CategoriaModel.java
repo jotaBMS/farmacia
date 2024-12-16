@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,10 +31,44 @@ public class CategoriaModel {
 	@Size(max = 10, message = "O Atributo codigo deve ter no maximo 10 digitos")
 	private String codigo;
 
-	/*
-	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade =
-	 * CascadeType.REMOVE)
-	 * 
-	 * @JsonIgnoreProperties("usuario") private List<Exercicio> exercicio; }
-	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("categoria")
+	private List<ProdutoModel> produtos;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+	public List<ProdutoModel> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<ProdutoModel> produtos) {
+		this.produtos = produtos;
+	}
+	
+	
+	
+	
+	
 }

@@ -1,20 +1,15 @@
 package com.generation.farmacia.model;
 
-import java.util.List;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -35,16 +30,58 @@ public class ProdutoModel {
 
 	private Double valor;
 
-	@ManyToOne
+	@ManyToOne 
+	@JsonIgnoreProperties("produto") //private List<CategoriaModel> produtos;
 	private CategoriaModel categoria;
+	
+	/* 
+	@ManyToOne //anotação para achave estrangeira na tabela tema
+	@JsonIgnoreProperties("produtos") //anotação para não deixar uma resposta em loop no Json
+	private CategoriasModel categorias;
+	 * 
+	 * */
+	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	public Double getValor() {
+		return valor;
+	}
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+	/*public List<CategoriaModel> getProdutos() {
+		return produtos;
+	}
+	public void setProdutos(List<CategoriaModel> produtos) {
+		this.produtos = produtos;
+	}*/
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
+	}
 
-	/*
-	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade =
-	 * CascadeType.REMOVE)
-	 * 
-	 * @JsonIgnoreProperties("usuario") private List<Exercicio> exercicio;
-	 * 
-	 * 
-	 * }
-	 */
-}
+	
+	
+	
+		 }
+	 
+
